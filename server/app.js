@@ -3,18 +3,25 @@ const cors = require('cors');
 const app = express();
 app.use(express.json());
 app.use(cors());
-const food = require('./data')
+const data = require('./data')
+const searchFunction = require('./model/searchFunctions')
 
-//const foodRoutes = require("./controller/routes");
-//app.use('/food',foodRoutes) ;
 
 app.get('/',(req,res)=>{
     res.send('Welcome to my API');
 })
 
-app.get('/food',(req,res)=>{
-    res.send(food)
-})
+app.get('/:topic', (req, res) => {
+    try {
+        const topicName = req.params.topic;
+        console.log(topicName)
+        const selectedSearch = searchFunction.SearchClass.findByTopic(topicName)
+        res.send(selectedSearch);
+    } catch (err) {
+        console.log(err);
+        res.status(404).send(err);
+    }
+});
+
 
 module.exports = app;
-

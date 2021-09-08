@@ -8,13 +8,16 @@ class SearchClass {
         this.place_link = place_link; 
     }
 
-    static findByTopic(subtopic) {
+    static findByTopic(topic) {
         try {
             const searchByTopicData = searchData.filter(data => {
-                return (data.topic.includes(topic) || data.subtopic.includes(topic) || data.description.includes(topic));
+                if (data.topic.includes(this.topic) || data.description.includes(this.topic)){
+                    console.log(data.topic.includes(this.topic))
+                    return data;
+                }
+                
             })
-            const search = new SearchClass(searchByTopicData);
-            return search;
+            return searchByTopicData;
         } catch (err) {
             throw new Error('Sorry,The topic you have been looking for will appear in few days!');
         }
@@ -24,6 +27,6 @@ class SearchClass {
 }
 
 
-module.exports = searchClass;
+module.exports = {SearchClass};
 
 
