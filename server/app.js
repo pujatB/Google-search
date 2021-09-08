@@ -4,19 +4,24 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 const data = require('./data')
+const searchFunction = require('./model/searchFunctions')
 
- const foodRoutes = require("./controller/routes");
- app.use('/food',foodRoutes) ;
 
 app.get('/',(req,res)=>{
     res.send('Welcome to my API');
 })
 
-app.get('/food/:name',(req,res)=>{
-        if (!(req.params['name'] in data)) {
-            res.status(404).send('This page is still updating.')
-        } else {
-            res.send(data[data.findIndex(x=>x.name === req.params['name'])]);
-        }
-})
+app.get('/:topic', (req, res) => {
+    try {
+        const topicName = req.params.topic;
+        console.log(topicName)
+        const selectedSearch = searchFunction.SearchClass.findByTopic(topicName)
+        res.send(selectedSearch);
+    } catch (err) {
+        console.log(err);
+        res.status(404).send(err);
+    }
+});
 
+
+module.exports = app;
