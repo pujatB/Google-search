@@ -1,14 +1,12 @@
 const searchData = require("../data")
 
-class SearchClasss {
+class SearchClass {
     constructor(topic,subtopic,description,place_link){
         this.topic = topic;
         this.subtopic = subtopic;
         this.description = description;
         this.place_link = place_link; 
     }
-
-
 
     static findByTopic(subtopic) {
         try {
