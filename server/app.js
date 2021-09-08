@@ -6,8 +6,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// const cohortRoutes = require("./controller/routes");
-// app.use('/cohorts',cohortRoutes) ;
+ const foodRoutes = require("./controller/routes");
+ app.use('/food',foodRoutes) ;
 
 app.get('/',(req,res)=>{
     res.send('Welcome to my API');
