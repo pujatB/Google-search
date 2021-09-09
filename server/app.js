@@ -16,13 +16,13 @@ app.get('/:topic', (req, res) => {
         const topicName = req.params.topic;
         console.log(topicName)
         //const selectedSearch = searchFunction.SearchClass.findByTopic(topicName)
-        const selectedSearch = searchFunction.findByTopic(topicName)
+        const selectedSearch = searchFunction.findByTopic(topicName);
         res.send(selectedSearch);
-    } catch (err) {
-        console.log(err);
-        res.status(404).send(err);
-    }
-});
+}catch(e){
+    res.send(e)
+}
+})
+
 
 
 module.exports = app;

@@ -41,4 +41,5 @@ const food = [
     },
 ]
 
+//console.log(typeof food)
 module.exports = food;
