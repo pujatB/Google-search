@@ -8,25 +8,25 @@ class SearchClass {
         this.place_link = place_link; 
     }
 
-    static findByTopic(topic) {
+    //topic in parentheses different from topic attribute
+   static findByTopic(topic) {
         try {
             const searchByTopicData = searchData.filter(data => {
-                if (data.topic.includes(this.topic) || data.description.includes(this.topic)){
-                    console.log(data.topic.includes(this.topic))
+                if (data.topic.includes(topic)){
+                    return data.topic.includes(topic)
                     return data;
-                }
-                
+                }   
             })
             return searchByTopicData;
         } catch (err) {
             throw new Error('Sorry,The topic you have been looking for will appear in few days!');
         }
-    }
+    } 
+
+} 
 
 
-}
 
-
-module.exports = {SearchClass};
+module.exports = {SearchClass:SearchClass}
 
 
