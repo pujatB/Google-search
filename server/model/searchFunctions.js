@@ -1,32 +1,30 @@
 const searchData = require("../data")
 
-class SearchClass {
-    constructor(topic,subtopic,description,place_link){
-        this.topic = topic;
-        this.subtopic = subtopic;
-        this.description = description;
-        this.place_link = place_link; 
+
+
+
+function findByTopic(value) {
+    try {
+        const searchByTopicData = searchData.filter(data => {
+            return (data.topic.includes(value) || data.country.includes(value) || data.description.includes(value))
+            // if (data.country.includes(value)){
+            //     //return data.topic.includes(value);
+            //     return data;
+            // }   
+        })
+        return searchByTopicData;
+    } catch (err) {
+        throw new Error('Sorry,The topic you have been looking for will appear in few days!');
     }
-
-    //topic in parentheses different from topic attribute
-   static findByTopic(topic) {
-        try {
-            const searchByTopicData = searchData.filter(data => {
-                if (data.topic.includes(topic)){
-                    return data.topic.includes(topic)
-                    return data;
-                }   
-            })
-            return searchByTopicData;
-        } catch (err) {
-            throw new Error('Sorry,The topic you have been looking for will appear in few days!');
-        }
-    } 
-
 } 
 
 
 
-module.exports = {SearchClass:SearchClass}
+//if value.uppercase  = MEXICO then doesnt matter if you type mexico
+//changes all data to uppercase so it doesnt matter how we type it
+console.log(findByTopic("Mexico"))
+
+
+module.exports = {findByTopic};
 
 
