@@ -15,7 +15,8 @@ app.get('/:topic', (req, res) => {
     try {
         const topicName = req.params.topic;
         console.log(topicName)
-        const selectedSearch = searchFunction.SearchClass.findByTopic(topicName)
+        //const selectedSearch = searchFunction.SearchClass.findByTopic(topicName)
+        const selectedSearch = searchFunction.findByTopic(topicName)
         res.send(selectedSearch);
     } catch (err) {
         console.log(err);

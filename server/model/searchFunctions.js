@@ -1,16 +1,16 @@
 const searchData = require("../data")
 
-class SearchClass {
-    constructor(topic,subtopic,description,place_link){
-        this.topic = topic;
-        this.subtopic = subtopic;
-        this.description = description;
-        this.place_link = place_link; 
-    }
+// class SearchClass {
+//     constructor(topic,subtopic,description,place_link){
+//         this.topic = topic;
+//         this.subtopic = subtopic;
+//         this.description = description;
+//         this.place_link = place_link; 
+//     }
 
 
 
-    static findByTopic(topic) {
+    function findByTopic(topic) {
         try {
             const searchByTopicData = searchData.filter(data => {
                 if (data.topic.includes(topic) || data.description.includes(topic)){
@@ -26,9 +26,9 @@ class SearchClass {
     }
 
 
-}
+//}
 
 
-module.exports = {SearchClass};
+module.exports = {findByTopic};
 
 
